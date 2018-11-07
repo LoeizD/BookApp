@@ -15,11 +15,8 @@
     <script>
         const endpoint = "http://51.15.205.111:6600/products/:id"
         fetch(endpoint)
-            .then(blob => {
-                console.log(blob)
-                blob.json()
-            })
-            .then(content => console.log(content))
+            .then(blob => blob.json())
+            .then(data => console.log(data))
     </script>
 </body>
 </html>

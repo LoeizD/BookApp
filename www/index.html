@@ -12,11 +12,21 @@
 </style>
 <body>
     <h1>Hello Book App</h1>
+    <div id="print"></div>
     <script>
         const endpoint = "http://51.15.205.111:6600/products/:id"
         fetch(endpoint)
             .then(blob => blob.json())
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data)
+                printOnDocument(data.msg)
+            })
+            
+        function printOnDocument(str) {
+            const p = document.createElement('p');
+            p.innerHTML = str;
+            document.querySelector('#print').appendChild(p);
+        }   
     </script>
 </body>
 </html>

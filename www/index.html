@@ -21,11 +21,14 @@
                 console.log(data)
                 printOnDocument(data.msg)
             })
-            
+
         function printOnDocument(str) {
             const p = document.createElement('p');
             p.innerHTML = str;
+            const party = document.createElement('img');
+            party.src = "https://media.giphy.com/media/QNnKbtl03OGsM/giphy.gif";
             document.querySelector('#print').appendChild(p);
+            document.querySelector('#print').appendChild(party);
         }   
     </script>
 </body>

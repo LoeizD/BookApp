@@ -12,5 +12,11 @@
 </style>
 <body>
     <h1>Hello Book App</h1>
+    <script>
+        const endpoint = "http://51.15.205.111:6600/api/"
+        fetch(endpoint)
+            .then(blob => JSON.parse(blob))
+            .then(content => console.log(content))
+    </script>
 </body>
 </html>

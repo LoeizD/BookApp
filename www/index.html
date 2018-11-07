@@ -17,7 +17,7 @@
         fetch(endpoint)
             .then(blob => {
                 console.log(blob)
-                JSON.parse(blob)
+                blob.json()
             })
             .then(content => console.log(content))
     </script>

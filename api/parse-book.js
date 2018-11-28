@@ -20,13 +20,23 @@ const bookWords = bookText.split(" ")
 bookWordsObj = bookWords.map(e => {return {word: e, locked: true}})
 
 console.log(bookWords.length + " words in book");
+console.log(bookWordsObj[10] + " spec " + bookWordsObj[10].word)
 
-mongoose.connect(process.env.MLAB_URI);
+// mongoose.connect(process.env.MLAB_URI);
+mongoClient.connect(process.env.MLAB_URI2, {
+  auth: {
+   user: process.env.MLAB_USERNAME,
+   password: process.env.MLAB_PW,
+  }}, function (err, db) {
+  db.close();
+});
 
 const Word = mongoose.model('Word', {
      word: {type: String, required: true},
      locked: { type: Boolean, default: true , required: true}
-    })
+    });
+
+
 
 Word.create(bookWordsObj, (err, data) => {
     if (err) return err

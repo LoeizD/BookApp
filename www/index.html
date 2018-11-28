@@ -69,6 +69,7 @@
         height: 23px;
         border-radius: 3px;
         display: inline-block !important;
+        z-index: 9;
     }
     .paypalimg{
         height: 14px;
@@ -78,6 +79,24 @@
     .buy:hover {
         background-color: rgb(235, 180, 52);
         cursor: pointer;
+        animation: shake 0.5s ease-in-out;
+    }
+    @keyframes shake {
+        0% {
+            transform: rotate(0deg);
+        }
+        2%{
+            transform: rotate(3deg);
+        }
+        50% {
+            transform: rotate(-3deg);
+        }
+        75% {
+            transform: rotate(2deg);
+        }
+        100% {
+            transform: rotate(0deg);
+        }
     }
 
 </style>

@@ -30,14 +30,14 @@ app.post('/pay', (req, res) => {
                 "items": [{
                     "name": "word",
                     "sku": "001",
-                    "price": "1.00",
+                    "price": "2.00",
                     "currency": "USD",
                     "quantity": 1
                 }]
             },
             "amount": {
                 "currency": "USD",
-                "total": "1.00"
+                "total": "2.00"
             },
             "description": "Unlock the next mysterious word!"
         }]
@@ -62,6 +62,30 @@ app.post('/pay', (req, res) => {
 
 })
 
+app.get('/success', (req, res) => {
+    const payerId = req.query.PayerID
+    const paymentId = req.query.paymentId
+
+    const execute_payment_json = {
+        "payer_id": payerId,
+        "transactions": [{
+            "amount": {
+                "currency": "USD",
+                "total": "2.00"
+            }
+        }]
+      };
+    
+    paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
+        if (error) {
+            console.log(error.response);
+            throw error;
+        } else {
+            console.log(JSON.stringify(payment));
+            res.send('Success');
+        }
+    });
+})
 
 
 app.get('/products/:id', function (req, res, next) {
@@ -75,7 +99,7 @@ app.get('/api/words/', (req, res) => {
 
 
 app.listen(6600, function () {
-    console.log('CORS-enabled web server listening on port 80')
+    console.log('CORS-enabled web server listening on port 6600')
 })
 
 // a server to

@@ -13,11 +13,27 @@
 <body>
     <h1>Hello Book App</h1>
     <div id="print"></div>
+    <div id="bookcontainer"></div>
+    <form action="/pay" method="POST">
+        <input type="submit" value="Buy">
+    </form>
     
-
     
     <script>
-        
+        const bookDiv = document.querySelector('#bookcontainer')
+        const bookLength = 1065
+        // Get unlocked words, display them
+        const unlockedEndpoint = "http://51.15.205.111:6600/api/words/"
+        fetch(unlockedEndpoint)
+            .then(blob => blob.json())
+            .then(data => {
+                console.log(data);
+                
+            })
+
+        // Set next word to a buy button
+        document.createElement()
+
         /*
         const endpoint = "http://51.15.205.111:6600/products/:id"
         fetch(endpoint)

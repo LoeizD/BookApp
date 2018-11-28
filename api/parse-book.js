@@ -2,7 +2,6 @@ const fs = require('fs')
 require('dotenv').config()
 const mongoose = require('mongoose')
 
-
 // a tool to parse a book in a mongo db, run once
 
 const bookPath = process.argv[2]
@@ -43,6 +42,7 @@ Word.create(bookWordsObj, (err, data) => {
     Word.countDocuments((err, count) => {
         if (err) return err
         console.log(count + " words in database")
+        console.log("ctrl C to exit.");
         return
     })
     return data

@@ -42,17 +42,19 @@ app.post('/pay', (req, res) => {
             "description": "Unlock the next mysterious word!"
         }]
     };
+    
+    paypal.payment.create(create_payment_json, function (error, payment) {
+        if (error) {
+            throw error
+        } else {
+            console.log("Create Payment Response")
+            console.log(payment)
+            res.send('test')
+        }
+    });
+
 })
 
-paypal.payment.create(create_payment_json, function (error, payment) {
-    if (error) {
-        throw error
-    } else {
-        console.log("Create Payment Response")
-        console.log(payment)
-        res.send('test')
-    }
-});
 
 
 app.get('/products/:id', function (req, res, next) {

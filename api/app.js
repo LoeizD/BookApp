@@ -13,6 +13,12 @@ const Payment = mongoose.model('Payment', {
     date:   {type: Date, required: true}
    });
 
+const Word = mongoose.model('Word', {
+     word: {type: String, required: true},
+     locked: { type: Boolean, default: true , required: true},
+     index: {type: Number, required: true, unique: true}
+    });   
+
 app.use(cors())
 
 paypal.configure({

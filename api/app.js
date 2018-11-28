@@ -22,7 +22,7 @@ app.post('/pay', (req, res) => {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://51.15.205.111/index.html",
+            "return_url": "http://51.15.205.111:6600/success",
             "cancel_url": "http://51.15.205.111/index.html"
         },
         "transactions": [{

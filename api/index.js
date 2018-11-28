@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
+require('dotenv').config()
 
 app.use(cors())
 
@@ -21,6 +22,7 @@ app.get('/', (req, res) => {
 
 
 console.log(process.env);
+console.log(process.env.MLAB_URI);
 
 
 app.listen(6600, function () {

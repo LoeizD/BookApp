@@ -35,6 +35,7 @@ const Word = mongoose.model('Word', {
 Word.create(bookWordsObj, (err, data) => {
     if (err) {
         console.log("Failed to create the word database.")
+        console.log(err)
         return err
     }
     console.log("Success creating the word database.")

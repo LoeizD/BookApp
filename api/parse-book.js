@@ -33,7 +33,16 @@ const Word = mongoose.model('Word', {
     });
 
 Word.create(bookWordsObj, (err, data) => {
-    if (err) return err
+    if (err) {
+        console.log("Failed to create the word database.")
+        return err
+    }
     console.log("Success creating the word database.")
+    // check that the count matches
+    Word.countDocuments((err, count) => {
+        if (err) return err
+        console.log(count + " words in database")
+        return
+    })
     return data
 })

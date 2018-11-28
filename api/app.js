@@ -7,6 +7,12 @@ var paypal = require('paypal-rest-sdk');
 
 mongoose.connect(process.env.MLAB_URI)
 
+const Payment = mongoose.model('Payment', {
+    paymentId: {type: String, required: true, unique: true},
+    payerId: { type: String, required: true},
+    date:   {type: Date, required: true}
+   });
+
 app.use(cors())
 
 paypal.configure({
@@ -81,8 +87,20 @@ app.get('/success', (req, res) => {
             console.log(error.response);
             throw error;
         } else {
-            console.log(JSON.stringify(payment));
-            res.send('Success');
+            // add payment to payment collection (list of all successful payments)
+            // redirect to index.html
+
+            Payment.create({paymentId: paymentId, payerId: payerId, date: Date.now()}, (err, data) => {
+                if (err) {
+                    console.log(err);
+                    return err
+                }
+                console.log("Success adding payment to DB");
+                
+            })
+            res.redirect('http://51.15.205.111/?newword')
+            // console.log(JSON.stringify(payment));
+            // res.send('Success');
         }
     });
 })
@@ -94,7 +112,24 @@ app.get('/products/:id', function (req, res, next) {
 
 app.get('/api/words/', (req, res) => {
     // all unlocked words
-    res.json({})
+    Payment.countDocuments((err, count) => {
+        if (err) {
+            console.log(err)
+            return err
+        }
+        const unlocked = count
+        // find, sort
+        Word.find({index: {$lte: unlocked}}).sort({index: 'asc'}).exec((err, data) => {
+            if (err) {
+                console.log(err)
+                return err
+            }
+            res.json(data)
+
+        })
+    })
+
+    // res.json({error: "error"})
 })
 
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>Book App</title>
@@ -7,18 +8,23 @@
 </head>
 <style>
     body {
-        background-color: gold;
+        background-color: rgb(255, 247, 224);
     }
 </style>
+
 <body>
     <h1>Hello Book App</h1>
     <div id="print"></div>
     <div id="bookcontainer"></div>
     <form action="http://51.15.205.111:6600/pay" method="POST">
-        <input type="submit" value="Buy">
+        <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/buy-logo-medium.png">
+        <!--https://www.paypal.com/us/webapps/mpp/logos-buttons -->
     </form>
+
     
-    
+
+
+
     <script>
         const bookDiv = document.querySelector('#bookcontainer')
         const bookLength = 1065
@@ -28,7 +34,7 @@
             .then(blob => blob.json())
             .then(data => {
                 console.log(data);
-                
+
             })
 
         // Set next word to a buy button
@@ -51,7 +57,8 @@
             document.querySelector('#print').appendChild(p);
             document.querySelector('#print').appendChild(party);
         }
-        */   
+        */
     </script>
 </body>
+
 </html>

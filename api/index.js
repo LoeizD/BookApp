@@ -18,6 +18,10 @@ app.get('/', (req, res) => {
 // Starting server
 // app.listen('6600')
 
+
+console.log(process.env);
+
+
 app.listen(6600, function () {
     console.log('CORS-enabled web server listening on port 80')
 })

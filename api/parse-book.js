@@ -16,7 +16,7 @@ if (bookPath == undefined) {
 const bookFile = fs.readFileSync(bookPath, "utf8")
 const bookData = bookFile.split("---")
 const bookText = bookData[bookData.length - 1]
-const bookWords = bookText.split(/ |\n/g)
+const bookWords = bookText.split(/ |\n/g).filter(e => e != "")
 bookWordsObj = bookWords.map((e, i) => {return {word: e, locked: true, index: i}})
 
 console.log(bookWords.length + " words in book");
@@ -29,7 +29,7 @@ mongoose.connect(process.env.MLAB_URI)
 const Word = mongoose.model('Word', {
      word: {type: String, required: true},
      locked: { type: Boolean, default: true , required: true},
-     index: {type: Number, required: true}
+     index: {type: Number, required: true, unique: true}
     });
 
 Word.create(bookWordsObj, (err, data) => {

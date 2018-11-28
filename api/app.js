@@ -23,7 +23,7 @@ app.post('/pay', (req, res) => {
         },
         "redirect_urls": {
             "return_url": "http://51.15.205.111/index.html",
-            "cancel_url": "http://cancel.url"
+            "cancel_url": "http://51.15.205.111/index.html"
         },
         "transactions": [{
             "item_list": {
@@ -47,9 +47,16 @@ app.post('/pay', (req, res) => {
         if (error) {
             throw error
         } else {
+            /*
             console.log("Create Payment Response")
             console.log(payment)
             res.send('test')
+            */
+            for (let i=0; i<payment.links.length; i++) {
+                if(payment.links[i].rel === 'approval_url'){
+                    res.redirect(payment.links[i].href)
+                }
+            }
         }
     });
 

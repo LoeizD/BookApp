@@ -16,30 +16,24 @@ if (bookPath == undefined) {
 const bookFile = fs.readFileSync(bookPath, "utf8")
 const bookData = bookFile.split("---")
 const bookText = bookData[bookData.length - 1]
-const bookWords = bookText.split(" ")
-bookWordsObj = bookWords.map(e => {return {word: e, locked: true}})
+const bookWords = bookText.split(/ |\n/g)
+bookWordsObj = bookWords.map((e, i) => {return {word: e, locked: true, index: i}})
 
 console.log(bookWords.length + " words in book");
-console.log(bookWordsObj[10] + " spec " + bookWordsObj[10].word)
+console.log(bookWordsObj[15])
+console.log(bookWordsObj[16])
+console.log(bookWordsObj[17])
 
-mongoose.connect(process.env.MLAB_URI);
-/*
-mongoClient.connect(process.env.MLAB_URI2, {
-  auth: {
-   user: process.env.MLAB_USERNAME,
-   password: process.env.MLAB_PW,
-  }}, function (err, db) {
-  db.close();
-}); */
+mongoose.connect(process.env.MLAB_URI)
 
 const Word = mongoose.model('Word', {
      word: {type: String, required: true},
-     locked: { type: Boolean, default: true , required: true}
+     locked: { type: Boolean, default: true , required: true},
+     index: {type: Number, required: true}
     });
-
-
 
 Word.create(bookWordsObj, (err, data) => {
     if (err) return err
     console.log("Success creating the word database.")
+    return data
 })

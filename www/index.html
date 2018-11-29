@@ -6,7 +6,7 @@
     <title>Book App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<link href="https://fonts.googleapis.com/css?family=Crimson+Text|Varela+Round" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Varela+Round|Libre+Baskerville" rel="stylesheet">
 
 <style>
     :root {
@@ -14,6 +14,7 @@
     }
     body, html {
         font-family: 'Varela Round', sans-serif;
+        font-size: 1.2em;
     }
     #bookcontainer {
         background-color: rgb(250, 250, 250);
@@ -24,11 +25,13 @@
         padding-top: 10px;
         padding-bottom: 40px;
         margin: 0px;
-        font-family: 'Crimson Text', serif;
+        font-family: 'Libre Baskerville', serif;
+        
+        line-height: 1.7em;
     }
     #bookcontainer span {
         display: inline-block;
-        padding-right: 6px;
+        padding-right: 8px;
     }
     #paypal {
         display: inline;
@@ -36,7 +39,7 @@
     #bookcontainer object {
         background-color: rgb(236, 236, 236);
         margin-right: 10px;
-        height: 23px;
+        height: 32px;
         border-radius: 3px;
         transform: translateY(6px);
     }
@@ -59,6 +62,8 @@
         border: none;
         height: 23px;
         font-family: 'Varela Round', sans-serif;
+        font-size: 0.7em;
+        transform: translateY(-3px);
     }
     .paypaltext:hover {
         cursor: pointer;
@@ -66,14 +71,14 @@
     .buy {
         background-color: rgb(253, 194, 57);
         margin-right: 10px;
-        height: 23px;
+        height: 32px;
         border-radius: 3px;
         display: inline-block !important;
         z-index: 9;
     }
     .paypalimg{
-        height: 14px;
-        transform: translateY(3px);
+        height: 16px;
+        transform: translateY(0px);
         padding-right: 10px;
     }
     .buy:hover {

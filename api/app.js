@@ -120,7 +120,7 @@ app.get('/api/words/', (req, res) => {
       console.log(err)
       return err
     }
-    const unlocked = count * 3
+    const unlocked = count * 6
     // find, sort
     Word.find({ index: { $lte: unlocked } }).sort({ index: 'asc' }).exec((err, data) => {
       if (err) {
